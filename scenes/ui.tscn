@@ -1,0 +1,573 @@
+[gd_scene load_steps=26 format=3 uid="uid://bpemgohmlhrv7"]
+
+[ext_resource type="Script" path="res://scripts/ui.gd" id="1_eevuv"]
+[ext_resource type="Script" path="res://scripts/search.gd" id="2_8cqfu"]
+[ext_resource type="FontFile" uid="uid://c1txrwmt11o4b" path="res://fonts/Ubuntu_Mono/UbuntuMono-Bold.ttf" id="2_h8hip"]
+[ext_resource type="Script" path="res://scripts/options/export.gd" id="2_lf6ca"]
+[ext_resource type="Script" path="res://scripts/options/saving.gd" id="4_8fdtl"]
+[ext_resource type="Script" path="res://scripts/options/grid_size.gd" id="5_rj6gq"]
+[ext_resource type="FontFile" uid="uid://nydmn14tc5ed" path="res://fonts/Ubuntu_Mono/UbuntuMono-Regular.ttf" id="6_11abt"]
+[ext_resource type="Script" path="res://scripts/options/separation.gd" id="7_xlcjw"]
+[ext_resource type="Script" path="res://scripts/options/cover_size.gd" id="8_yt32x"]
+[ext_resource type="Script" path="res://scripts/options/background.gd" id="9_em82t"]
+[ext_resource type="Script" path="res://scripts/options/empty_cover_color.gd" id="10_abrwt"]
+[ext_resource type="Script" path="res://scripts/options/resolution.gd" id="11_r3f2u"]
+[ext_resource type="Script" path="res://scripts/options/text_color.gd" id="12_eks2k"]
+[ext_resource type="Script" path="res://scripts/canvas.gd" id="12_ndlxo"]
+[ext_resource type="Script" path="res://scripts/options/show_text.gd" id="13_4d116"]
+[ext_resource type="Script" path="res://scripts/options/max_text_length.gd" id="13_76eum"]
+[ext_resource type="Script" path="res://scripts/grid.gd" id="13_uo4r4"]
+[ext_resource type="Script" path="res://scripts/options/text_format.gd" id="14_kag4p"]
+
+[sub_resource type="Theme" id="Theme_s1uhj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t4xjg"]
+bg_color = Color(0.145098, 0.145098, 0.145098, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_k71dv"]
+font = ExtResource("2_h8hip")
+font_size = 18
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_3d2xm"]
+color = Color(0, 0, 0, 0.301961)
+thickness = 2
+
+[sub_resource type="LabelSettings" id="LabelSettings_bh7sy"]
+font = ExtResource("2_h8hip")
+font_size = 18
+
+[sub_resource type="LabelSettings" id="LabelSettings_cco43"]
+font = ExtResource("2_h8hip")
+font_size = 18
+
+[sub_resource type="LabelSettings" id="LabelSettings_mm4iq"]
+font = ExtResource("2_h8hip")
+font_size = 18
+
+[node name="ui" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme = SubResource("Theme_s1uhj")
+script = ExtResource("1_eevuv")
+
+[node name="split" type="HSplitContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+split_offset = 400
+
+[node name="options" type="Panel" parent="split"]
+z_index = -1
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_t4xjg")
+metadata/_edit_use_anchors_ = true
+
+[node name="options_margin" type="MarginContainer" parent="split/options"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="options_search_split" type="VSplitContainer" parent="split/options/options_margin"]
+layout_mode = 2
+split_offset = 500
+
+[node name="options_scroll" type="ScrollContainer" parent="split/options/options_margin/options_search_split"]
+layout_mode = 2
+
+[node name="options_container" type="VBoxContainer" parent="split/options/options_margin/options_search_split/options_scroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="export" type="HBoxContainer" parent="split/options/options_margin/options_search_split/options_scroll/options_container"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+script = ExtResource("2_lf6ca")
+
+[node name="file_dialog" type="FileDialog" parent="split/options/options_margin/options_search_split/options_scroll/options_container/export"]
+title = "export :3"
+position = Vector2i(50, 50)
+size = Vector2i(400, 500)
+mode_overrides_title = false
+access = 2
+
+[node name="button" type="Button" parent="split/options/options_margin/options_search_split/options_scroll/options_container/export"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme_override_fonts/font = ExtResource("2_h8hip")
+theme_override_font_sizes/font_size = 12
+
+[node name="label" type="Label" parent="split/options/options_margin/options_search_split/options_scroll/options_container/export/button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "export :D"
+label_settings = SubResource("LabelSettings_k71dv")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="save_load" type="HBoxContainer" parent="split/options/options_margin/options_search_split/options_scroll/options_container"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+script = ExtResource("4_8fdtl")
+
+[node name="file_dialog" type="FileDialog" parent="split/options/options_margin/options_search_split/options_scroll/options_container/save_load"]
+position = Vector2i(50, 50)
+size = Vector2i(400, 500)
+access = 2
+filters = PackedStringArray("*.json")
+
+[node name="save_button" type="Button" parent="split/options/options_margin/options_search_split/options_scroll/options_container/save_load"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme_override_fonts/font = ExtResource("2_h8hip")
+theme_override_font_sizes/font_size = 12
+
+[node name="label" type="Label" parent="split/options/options_margin/options_search_split/options_scroll/options_container/save_load/save_button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "save...?"
+label_settings = SubResource("LabelSettings_k71dv")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="load_button" type="Button" parent="split/options/options_margin/options_search_split/options_scroll/options_container/save_load"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme_override_fonts/font = ExtResource("2_h8hip")
+theme_override_font_sizes/font_size = 12
+
+[node name="label" type="Label" parent="split/options/options_margin/options_search_split/options_scroll/options_container/save_load/load_button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "load!!!"
+label_settings = SubResource("LabelSettings_k71dv")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="separator" type="HSeparator" parent="split/options/options_margin/options_search_split/options_scroll/options_container"]
+layout_mode = 2
+theme_override_constants/separation = 10
+theme_override_styles/separator = SubResource("StyleBoxLine_3d2xm")
+
+[node name="grid_size" type="VBoxContainer" parent="split/options/options_margin/options_search_split/options_scroll/options_container"]
+layout_mode = 2
+script = ExtResource("5_rj6gq")
+
+[node name="width" type="HBoxContainer" parent="split/options/options_margin/options_search_split/options_scroll/options_container/grid_size"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+
+[node name="label" type="Label" parent="split/options/options_margin/options_search_split/options_scroll/options_container/grid_size/width"]
+layout_mode = 2
+text = "width  "
+label_settings = SubResource("LabelSettings_k71dv")
+
+[node name="slider" type="HSlider" parent="split/options/options_margin/options_search_split/options_scroll/options_container/grid_size/width"]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 1.0
+max_value = 20.0
+value = 5.0
+allow_greater = true
+
+[node name="value" type="LineEdit" parent="split/options/options_margin/options_search_split/options_scroll/options_container/grid_size/width"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_11abt")
+placeholder_text = "owo"
+alignment = 1
+
+[node name="height" type="HBoxContainer" parent="split/options/options_margin/options_search_split/options_scroll/options_container/grid_size"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+
+[node name="label" type="Label" parent="split/options/options_margin/options_search_split/options_scroll/options_container/grid_size/height"]
+layout_mode = 2
+text = "height "
+label_settings = SubResource("LabelSettings_bh7sy")
+
+[node name="slider" type="HSlider" parent="split/options/options_margin/options_search_split/options_scroll/options_container/grid_size/height"]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 1.0
+max_value = 20.0
+value = 5.0
+allow_greater = true
+
+[node name="value" type="LineEdit" parent="split/options/options_margin/options_search_split/options_scroll/options_container/grid_size/height"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_11abt")
+placeholder_text = "uwu"
+alignment = 1
+
+[node name="separation" type="HBoxContainer" parent="split/options/options_margin/options_search_split/options_scroll/options_container"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+script = ExtResource("7_xlcjw")
+
+[node name="label" type="Label" parent="split/options/options_margin/options_search_split/options_scroll/options_container/separation"]
+layout_mode = 2
+text = "separation "
+label_settings = SubResource("LabelSettings_k71dv")
+
+[node name="slider" type="HSlider" parent="split/options/options_margin/options_search_split/options_scroll/options_container/separation"]
+layout_mode = 2
+size_flags_horizontal = 3
+value = 20.0
+allow_greater = true
+
+[node name="value" type="LineEdit" parent="split/options/options_margin/options_search_split/options_scroll/options_container/separation"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_11abt")
+placeholder_text = ":3"
+alignment = 1
+
+[node name="cover_size" type="HBoxContainer" parent="split/options/options_margin/options_search_split/options_scroll/options_container"]
+layout_mode = 2
+script = ExtResource("8_yt32x")
+
+[node name="label" type="Label" parent="split/options/options_margin/options_search_split/options_scroll/options_container/cover_size"]
+layout_mode = 2
+text = "cover size "
+label_settings = SubResource("LabelSettings_k71dv")
+
+[node name="slider" type="HSlider" parent="split/options/options_margin/options_search_split/options_scroll/options_container/cover_size"]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 10.0
+max_value = 500.0
+value = 150.0
+allow_greater = true
+
+[node name="value" type="LineEdit" parent="split/options/options_margin/options_search_split/options_scroll/options_container/cover_size"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_11abt")
+placeholder_text = ".w."
+alignment = 1
+
+[node name="background" type="HBoxContainer" parent="split/options/options_margin/options_search_split/options_scroll/options_container"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+script = ExtResource("9_em82t")
+
+[node name="label" type="Label" parent="split/options/options_margin/options_search_split/options_scroll/options_container/background"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "background "
+label_settings = SubResource("LabelSettings_cco43")
+vertical_alignment = 1
+
+[node name="color" type="HBoxContainer" parent="split/options/options_margin/options_search_split/options_scroll/options_container/background"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="picker" type="ColorPickerButton" parent="split/options/options_margin/options_search_split/options_scroll/options_container/background/color"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+color = Color(0.0705882, 0.0705882, 0.0705882, 1)
+
+[node name="file" type="HBoxContainer" parent="split/options/options_margin/options_search_split/options_scroll/options_container/background"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="path" type="LineEdit" parent="split/options/options_margin/options_search_split/options_scroll/options_container/background/file"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+placeholder_text = "path"
+
+[node name="url" type="HBoxContainer" parent="split/options/options_margin/options_search_split/options_scroll/options_container/background"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="url" type="LineEdit" parent="split/options/options_margin/options_search_split/options_scroll/options_container/background/url"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "url"
+
+[node name="options" type="OptionButton" parent="split/options/options_margin/options_search_split/options_scroll/options_container/background"]
+layout_mode = 2
+focus_mode = 0
+theme_override_fonts/font = ExtResource("6_11abt")
+item_count = 3
+selected = 0
+popup/item_0/text = "color"
+popup/item_0/id = 0
+popup/item_1/text = "image"
+popup/item_1/id = 1
+popup/item_2/text = "url"
+popup/item_2/id = 2
+
+[node name="empty_cover_color" type="HBoxContainer" parent="split/options/options_margin/options_search_split/options_scroll/options_container"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+script = ExtResource("10_abrwt")
+
+[node name="label" type="Label" parent="split/options/options_margin/options_search_split/options_scroll/options_container/empty_cover_color"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "empty cover color "
+label_settings = SubResource("LabelSettings_cco43")
+vertical_alignment = 1
+
+[node name="picker" type="ColorPickerButton" parent="split/options/options_margin/options_search_split/options_scroll/options_container/empty_cover_color"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+color = Color(0, 0, 0, 0.541176)
+
+[node name="resolution" type="HBoxContainer" parent="split/options/options_margin/options_search_split/options_scroll/options_container"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+script = ExtResource("11_r3f2u")
+
+[node name="label" type="Label" parent="split/options/options_margin/options_search_split/options_scroll/options_container/resolution"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "resolution "
+label_settings = SubResource("LabelSettings_cco43")
+vertical_alignment = 1
+
+[node name="width" type="LineEdit" parent="split/options/options_margin/options_search_split/options_scroll/options_container/resolution"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_h8hip")
+placeholder_text = "width"
+alignment = 1
+
+[node name="height" type="LineEdit" parent="split/options/options_margin/options_search_split/options_scroll/options_container/resolution"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_h8hip")
+placeholder_text = "height"
+alignment = 1
+
+[node name="options" type="OptionButton" parent="split/options/options_margin/options_search_split/options_scroll/options_container/resolution"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme_override_fonts/font = ExtResource("6_11abt")
+item_count = 2
+selected = 0
+popup/item_0/text = "dynamic"
+popup/item_0/id = 0
+popup/item_1/text = "fixed"
+popup/item_1/id = 1
+
+[node name="show_text" type="HBoxContainer" parent="split/options/options_margin/options_search_split/options_scroll/options_container"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+script = ExtResource("13_4d116")
+
+[node name="label" type="Label" parent="split/options/options_margin/options_search_split/options_scroll/options_container/show_text"]
+layout_mode = 2
+text = "show text"
+label_settings = SubResource("LabelSettings_mm4iq")
+
+[node name="value" type="CheckButton" parent="split/options/options_margin/options_search_split/options_scroll/options_container/show_text"]
+layout_mode = 2
+size_flags_horizontal = 10
+focus_mode = 0
+button_pressed = true
+
+[node name="text_color" type="HBoxContainer" parent="split/options/options_margin/options_search_split/options_scroll/options_container"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+script = ExtResource("12_eks2k")
+
+[node name="label" type="Label" parent="split/options/options_margin/options_search_split/options_scroll/options_container/text_color"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "text color "
+label_settings = SubResource("LabelSettings_cco43")
+vertical_alignment = 1
+
+[node name="picker" type="ColorPickerButton" parent="split/options/options_margin/options_search_split/options_scroll/options_container/text_color"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+color = Color(1, 1, 1, 1)
+
+[node name="text_format" type="HBoxContainer" parent="split/options/options_margin/options_search_split/options_scroll/options_container"]
+layout_mode = 2
+script = ExtResource("14_kag4p")
+
+[node name="label" type="Label" parent="split/options/options_margin/options_search_split/options_scroll/options_container/text_format"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "text format "
+label_settings = SubResource("LabelSettings_cco43")
+vertical_alignment = 1
+
+[node name="format" type="LineEdit" parent="split/options/options_margin/options_search_split/options_scroll/options_container/text_format"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_h8hip")
+text = "{artist} - {album}"
+placeholder_text = "tunes? bops?"
+
+[node name="max_text_length" type="HBoxContainer" parent="split/options/options_margin/options_search_split/options_scroll/options_container"]
+layout_mode = 2
+script = ExtResource("13_76eum")
+
+[node name="label" type="Label" parent="split/options/options_margin/options_search_split/options_scroll/options_container/max_text_length"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "max text length "
+label_settings = SubResource("LabelSettings_cco43")
+vertical_alignment = 1
+
+[node name="width" type="LineEdit" parent="split/options/options_margin/options_search_split/options_scroll/options_container/max_text_length"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_fonts/font = ExtResource("2_h8hip")
+text = "100"
+placeholder_text = ":D"
+alignment = 1
+
+[node name="search" type="VBoxContainer" parent="split/options/options_margin/options_search_split"]
+layout_mode = 2
+script = ExtResource("2_8cqfu")
+
+[node name="album_line_edit" type="LineEdit" parent="split/options/options_margin/options_search_split/search"]
+layout_mode = 2
+placeholder_text = "pepepeppep"
+
+[node name="search_button" type="Button" parent="split/options/options_margin/options_search_split/search"]
+layout_mode = 2
+text = "search???"
+
+[node name="album_search" type="Panel" parent="split/options/options_margin/options_search_split/search"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 1
+
+[node name="scroll_container" type="ScrollContainer" parent="split/options/options_margin/options_search_split/search/album_search"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+
+[node name="margin_container" type="MarginContainer" parent="split/options/options_margin/options_search_split/search/album_search/scroll_container"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="album_search_grid" type="GridContainer" parent="split/options/options_margin/options_search_split/search/album_search/scroll_container/margin_container"]
+layout_mode = 2
+columns = 2
+
+[node name="canvas" type="Control" parent="split"]
+z_as_relative = false
+clip_contents = true
+layout_mode = 2
+script = ExtResource("12_ndlxo")
+
+[node name="viewport" type="SubViewport" parent="split/canvas"]
+size = Vector2i(1920, 1080)
+
+[node name="root" type="Control" parent="split/canvas/viewport"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="grid" type="Control" parent="split/canvas/viewport/root"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("13_uo4r4")
+
+[node name="color_background" type="ColorRect" parent="split/canvas/viewport/root/grid"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0705882, 0.0705882, 0.0705882, 1)
+
+[node name="image_background" type="TextureRect" parent="split/canvas/viewport/root/grid"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch_mode = 6
+
+[node name="url_background" type="TextureRect" parent="split/canvas/viewport/root/grid"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch_mode = 6
+
+[node name="aspect_keeper" type="AspectRatioContainer" parent="split/canvas"]
+z_index = -1
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+ratio = 1.7778
+
+[node name="texture" type="TextureRect" parent="split/canvas/aspect_keeper"]
+layout_mode = 2
+expand_mode = 2
